@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+.container{
+    margin: 10%;
+    display: grid;
+    grid-template-rows: 10vh 90vh;
+}
+.div_buscador{
+    margin: 2%;
+}
+
+
+.info_poke{
+    margin: auto;
+    display: grid;
+    grid-template-columns: 45vw 45vw;
+    grid-template-rows: 100vh;
+}
+
+.descripcion{
+    display: grid, flex;
+    margin-top: 70px;
+    font-size: 20px;
+}
+
+#nombrePokemon {
+    width: 70%;
+    font-size: 20px;
+}
+
+#btn_buscar {
+    font-size: 20px;
+}
+
+.div_img{
+    display: grid, flex; /* Utilizo flex para reducir espacion entre elementos en grid 1 y 2*/
+    grid-template-rows: 1fr 1fr;
+    
+
+}
+
+#imagenPokemon{
+    grid: 1;
+    height: 300px;
+    width: 300px;
+}
+
+#imagenEspalda{
+    grid: 2;
+    height: 300px;
+    width: 300px;
+}
+

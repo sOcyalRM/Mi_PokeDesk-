@@ -34,14 +34,51 @@ async function fetchDatos(){ //Declaro funcion async para esperar por la promesa
                                                             // No todos los pokemones tienen un front_default
         const imgElement = document.getElementById("imagenPokemon");
 
+       
+       //Manejo de imagenes delantera y trasera del pokemon 
+        const pokemonSpriteBack = data?.sprites?.back_default;
+        const imgEspalda = document.getElementById("imagenEspalda");
+
         if (!pokemonSprite) { //Si el pokemon no tiene imagen se lanza este error
             throw new Error("Este Pokémon no tiene imagen disponible");
         }
 
-
-
         imgElement.src = pokemonSprite;
         imgElement.style.display = "block";
+
+        imgEspalda.src = pokemonSpriteBack;
+        imgEspalda.style.display = "block";
+
+        //Fin Manejo de imagenes 
+
+        /*Manejo de descripcion de Pokemones */
+        //Declaracion de variables tipo elementos html
+        const elementoNombre = document.getElementById("pokemonName");
+        const listaHabilidades = document.getElementById("habilidades");
+        const listaTipos = document.getElementById ('types');
+
+        //Mostrando nombre de pokemon
+        let pokemonName = data.species.name;
+        elementoNombre.innerHTML = '<b>Nombre: </b><br> '+`<li>${pokemonName}</li>`;
+
+       //Mostrando habilidades de pokemon
+        listaHabilidades.innerHTML = "<b>Habilidad(es):</b><ul>"; //Inicio de lista
+        data.abilities.forEach(({ ability }) => {
+        listaHabilidades.innerHTML += `<li>${ability.name}</li>`;
+        });
+        listaHabilidades.innerHTML += "</ul>"; //Fin de Lista
+
+        //Mostrando los tipos
+        listaTipos.innerHTML = "<b>Tipo(s):</b><ul>"; //Inicio de lista
+        data.types.forEach(({ type }) => {
+            listaTipos.innerHTML +=  `<li>${type.name}</li>`;
+        });
+
+
+        //Para mostrar en consola todos los datos realacionados a los pokemones
+        console.log(data);
+
+
     }
     catch(error){
         console.error(error);
