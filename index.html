@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedesk</title>
     <link rel="stylesheet" href="styles.css">
+    
 </head>
-    <body>
-
+    <body >
         <div class="container">
-
             <div class="div_buscador">
-                <input type="text" id="nombrePokemon" placeholder="Pikachu">
+                <input type="text" id="busquedaPokemon" placeholder="Charizard">
                 <button onclick="fetchDatos()" id="btn_buscar"> Buscar</button> <br>
             </div>
 
@@ -23,8 +22,10 @@
                 </div>
 
                 <div class="descripcion">
-                    <h2>Descripcion del Pokemon</h2>
+                    <h2 id="tituloDescripcion"></h2>
                     <ul id="pokemonName"></ul>
+                    <ul id="pokemonHeight"></ul>
+                    <ul id="pokemonWeight"></ul>
                     <ul id="habilidades"></ul>
                     <ul id="types"></ul>
                 </div>

@@ -1,7 +1,15 @@
 * {
     box-sizing: border-box;
-}
+    background-color: rgb(218, 248, 238);
 
+}
+body{
+    background-image: url('pokeball.png');
+    background-size: cover;              /* Ajusta la imagen al tamaño de la pantalla */
+    background-position: absolute;         /* Centra la imagen */
+    background-repeat: repeat;        /* Evita que la imagen se repita */
+    background-attachment: fixed;
+}
 .container{
     margin: 10%;
     display: grid;
@@ -25,7 +33,7 @@
     font-size: 20px;
 }
 
-#nombrePokemon {
+#busquedaPokemon {
     width: 70%;
     font-size: 20px;
 }

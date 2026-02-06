@@ -9,24 +9,23 @@ async function fetchDatos(){ //Declaro funcion async para esperar por la promesa
     
         
         try{     // La promesa es el objeto que resulta de la ejecucion de la funcion
-        const nombrePokemon = document
-            .getElementById("nombrePokemon")
+        const pokemonSearch = document
+            .getElementById("busquedaPokemon")
             .value
             .toLowerCase()
             .trim();
 
-        if (!nombrePokemon){
+        if (!pokemonSearch){
             throw new Error ("Ingresa un nombre de pokemon")
         }
 
         const response = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`)
+            `https://pokeapi.co/api/v2/pokemon/${pokemonSearch}`)
             ;//Se espera hasta que se obtenga resultado del fetch
 
         if (!response.ok){
             throw new Error('No se pudo obtener la informacion');
         }//Await pone una pausa en la funcion hasta que la promesa es resuelta
-        
 
         const data = await response.json(); 
 
@@ -53,13 +52,27 @@ async function fetchDatos(){ //Declaro funcion async para esperar por la promesa
 
         /*Manejo de descripcion de Pokemones */
         //Declaracion de variables tipo elementos html
+        const elementoTitulo = document.getElementById ("tituloDescripcion")
         const elementoNombre = document.getElementById("pokemonName");
+        const elementoHeight = document.getElementById("pokemonHeight");
+        const elementoWeight = document.getElementById("pokemonWeight");
         const listaHabilidades = document.getElementById("habilidades");
         const listaTipos = document.getElementById ('types');
 
+
+        //Mostrando Descripcion 
+        elementoTitulo.innerHTML = '<b>Descripcion del Pokemon</b>';
         //Mostrando nombre de pokemon
         let pokemonName = data.species.name;
         elementoNombre.innerHTML = '<b>Nombre: </b><br> '+`<li>${pokemonName}</li>`;
+
+        //Mostrando Estatura de pokemon
+        let pokemonHeight = data.height;
+        elementoHeight.innerHTML = '<b>Estatura: </b><br> '+`<li>${pokemonHeight} pulgadas</li>`;
+
+        //Mostrando Peso de pokemon
+        let pokemonWeight = data.weight;
+        elementoWeight.innerHTML = '<b>Peso: </b><br> '+`<li>${pokemonWeight} libras</li>`;
 
        //Mostrando habilidades de pokemon
         listaHabilidades.innerHTML = "<b>Habilidad(es):</b><ul>"; //Inicio de lista
@@ -84,6 +97,18 @@ async function fetchDatos(){ //Declaro funcion async para esperar por la promesa
         console.error(error);
         alert(error.message);
     }
-}
+} // Fin funcion fetchDatos()
 
-//fetchDatos() //En este caso, no es necesario llamar la funcion o resultara en error
+    //Logica Barra de busqueda de pokemon 
+        document.addEventListener("DOMContentLoaded", () => {
+        document
+            .getElementById("busquedaPokemon")
+            .addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                fetchDatos();
+            }
+            });
+        });
+        //Fin Barra de busqueda
+
+
